@@ -1,0 +1,54 @@
+﻿<mui:ModernWindow x:Class="iPhoneRestrictionsPasscodeBFTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iPhoneRestrictionsPasscodeBFTool"
+        xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+        mc:Ignorable="d"
+        Style="{StaticResource BlankWindow}"
+        Loaded="ModernWindow_Loaded"
+        WindowStartupLocation="CenterScreen"
+        Title="iPhone Restrictions Passcode BF Tool" Height="500" Width="700">
+    <mui:ModernWindow.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Cursor" Value="Hand"></Setter>
+        </Style>
+    </mui:ModernWindow.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="5,0" FontSize="15">UDID backup devices</TextBlock>
+            <ListBox x:Name="deviceList"  Margin="5"  Background="Gray" Grid.Row="1" SelectionChanged="deviceList_SelectionChanged" SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Margin="5,2"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" x:Name="loadingBar" Visibility="Hidden" Margin="5">
+                <ProgressBar IsIndeterminate="True"></ProgressBar>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">PLEASE WAIT</TextBlock>
+            </Grid>
+            <Button Grid.Row="1" x:Name="breakButton" Click="breakButton_Click" IsEnabled="False">BREAK PASSCODE</Button>
+            <StackPanel Grid.Row="2"  Orientation="Vertical" Margin="10">
+                <TextBlock VerticalAlignment="Center">Passcode:</TextBlock>
+                <TextBlock  x:Name="passcodeValue"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</mui:ModernWindow>
